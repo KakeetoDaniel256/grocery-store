@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        form {
+            background-color: #fff;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        select,
+        input[type="text"],
+        button {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Select Mobile Network and Enter Number</h1>
+    
+    <form id="payment-form">
+        <label for="network">Select Mobile Network:</label>
+        <select id="network" name="network">
+            <option value="airtel">Airtel</option>
+            <option value="mtn">MTN</option>
+        </select>
+
+        <label for="mobile-number">Enter Mobile Number:</label>
+        <input type="text" id="mobile-number" name="mobile-number" required>
+
+        <button type="submit">Proceed to Payment</button>
+    </form>
+
+    <script>
+        document.getElementById("payment-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const selectedNetwork = document.getElementById("network").value;
+            const mobileNumber = document.getElementById("mobile-number").value;
+
+            // Depending on the selected network, you can redirect to the appropriate payment URL
+            if (selectedNetwork === "airtel") {
+                window.location.href = `y.html${mobileNumber}`;
+            } else if (selectedNetwork === "mtn") {
+                window.location.href = `mtn_payment.php?mobile=${mobileNumber}`;
+            }
+        });
+    </script>
+</body>
+
+
+
+
+function updateCart() {
+    const cartContainer = document.getElementById("cart-container"); // Get the cart container element
+    cartContainer.innerHTML = ""; // Clear previous content
+
+    cartItems.forEach((item, index) => {
+        const cartItemElement = document.createElement("div");
+        cartItemElement.className = "cart-item";
+        cartItemElement.innerHTML = `
+            ${item.name} - $${item.price.toFixed(2)}
+            <button class="remove-button" data-index="${index}">Remove</button>
+        `;
+        cartContainer.appendChild(cartItemElement);
+    });
+
+    cartTotalElement.textContent = cartTotal.toFixed(2);
+    cartCountElement.textContent = cartItems.length;
+
+    // Add event listeners to the remove buttons
+    const removeButtons = document.querySelectorAll(".remove-button");
+    removeButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            const index = parseInt(this.getAttribute("data-index"));
+            removeFromCart(index);
+        });
+    });
+</html>
+
+
+
+
+function updateCart() {
+    cartItemsList.innerHTML = "";
+    cartItems.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+            ${item.name} - $${item.price.toFixed(2)}
+            <button class="remove-button" data-index="${index}">Remove</button>
+        `;
+        cartItemsList.appendChild(li);
+    });
+    cartTotalElement.textContent = cartTotal.toFixed(2);
+    cartCountElement.textContent = cartItems.length;
+
+    // Add event listeners to the remove buttons
+    const removeButtons = document.querySelectorAll(".remove-button");
+    removeButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            const index = parseInt(this.getAttribute("data-index"));
+            removeFromCart(index);
+        });
+    });
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Include the PayPal SDK script -->
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID"></script>
+</head>
+<body>
+    <!-- Your checkout items and other content here -->
+
+    <!-- PayPal button container -->
+    <div id="paypal-button-container"></div>
+
+    <script>
+        // Render the PayPal button
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                // Set up the transaction details, including amount and currency
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: cartTotal.toFixed(2)
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                // Redirect the user to the approval URL
+                return actions.order.capture().then(function(details) {
+                    // Handle the payment capture confirmation
+                    // You can also redirect the user to a "Thank You" page here
+                    console.log('Payment completed:', details);
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
+</body>
+</html>

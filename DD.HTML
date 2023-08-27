@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airtel Payment</title>
+</head>
+<body>
+    <h1>Airtel Payment</h1>
+    
+    <form id="airtel-payment-form">
+        <label for="mobile-number">Enter Airtel Mobile Number:</label>
+        <input type="text" id="mobile-number" name="mobile-number" required>
+        
+        <button type="submit">Proceed to Airtel Payment</button>
+    </form>
+    
+    <script>
+        document.getElementById("airtel-payment-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const mobileNumber = document.getElementById("mobile-number").value;
+            const paymentAmount = 100; // Replace with your actual payment amount
+            
+            // Redirect to another HTML file with payment details as query parameters
+            window.location.href = `airtel_payment_confirmation.html?mobile=${mobileNumber}&amount=${paymentAmount}`;
+        });
+    </script>
+</body>
+</html>

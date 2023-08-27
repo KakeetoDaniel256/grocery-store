@@ -1,0 +1,22 @@
+<script>
+    function addToCart(name, price) {
+        cartItems.push({ name, price });
+        cartTotal += price;
+        updateCart();
+        if (cartVisible) {
+            showCart();
+        }
+    }
+
+    function updateCart() {
+        cartItemsList.innerHTML = "";
+        cartItems.forEach(item => {
+            const li = document.createElement("li");
+            li.textContent = item.name + " - $" + item.price.toFixed(2);
+            cartItemsList.appendChild(li);
+        });
+        cartTotalElement.textContent = cartTotal.toFixed(2);
+        cartCountElement.textContent = cartItems.length;
+    }
+    
+</script>
